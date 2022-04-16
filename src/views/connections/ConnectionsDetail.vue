@@ -219,7 +219,8 @@
               </a>
             </el-tooltip>
             <el-select class="received-type-select" size="small" v-model="receivedMsgType">
-              <el-option v-for="type in ['Plaintext', 'Base64', 'JSON', 'Hex']" :key="type" :value="type"> </el-option>
+              <el-option v-for="type in ['Plaintext', 'Base64', 'JSON', 'Hex', 'Zstandard']" :key="type" :value="type">
+              </el-option>
             </el-select>
             <MsgTypeTabs v-model="msgType" @change="handleMsgTypeChanged" />
           </div>
@@ -294,6 +295,7 @@ import topicMatch, { matchTopicMethod } from '@/utils/topicMatch'
 import { createClient } from '@/utils/mqttUtils'
 import { getBytes, getUptime, getVersion } from '@/utils/SystemTopicUtils'
 import validFormatJson from '@/utils/validFormatJson'
+import { compressSync, decompressSync } from 'zstd.ts'
 
 import MessageList from '@/components/MessageList.vue'
 import MsgPublish from '@/components/MsgPublish.vue'
@@ -1290,6 +1292,10 @@ export default class ConnectionsDetail extends Vue {
       if (publishType === 'JSON') {
         validFormatJson(publishValue, this.$t('connections.publishMsg'))
       }
+      if (publishType === 'Zstandard') {
+        let compressed: Buffer = compressSync({ input: publishValue })
+        return compressed.toString()
+      }
       return publishValue
     }
     const genReceivePayload = (receiveType: PayloadType, receiveValue: Buffer) => {
@@ -1302,6 +1308,10 @@ export default class ConnectionsDetail extends Vue {
         if (jsonValue) {
           return jsonValue
         }
+      }
+      if (receiveType === 'Zstandard') {
+        let uncompressed: Buffer = decompressSync({ input: receiveValue })
+        return uncompressed.toString()
       }
       return receiveValue.toString()
     }
