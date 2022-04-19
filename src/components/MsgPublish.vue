@@ -302,7 +302,7 @@ export default class MsgPublish extends Vue {
   @Watch('payloadType')
   private handleTypeChange(val: PayloadType, oldVal: PayloadType) {
     const { payload } = this.msgRecord
-    if (val === 'JSON') {
+    if (val === 'JSON' || val === 'Zstandard') {
       this.payloadLang = 'json'
     } else {
       this.payloadLang = 'plaintext'

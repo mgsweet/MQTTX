@@ -1294,7 +1294,7 @@ export default class ConnectionsDetail extends Vue {
       }
       if (publishType === 'Zstandard') {
         let compressed: Buffer = compressSync({ input: publishValue })
-        return compressed.toString()
+        return compressed
       }
       return publishValue
     }
