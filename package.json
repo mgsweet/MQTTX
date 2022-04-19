@@ -2,7 +2,7 @@
   "name": "MQTTX",
   "version": "1.7.3-zstd",
   "description": "MQTT desktop client",
-  "author": "EMQX Team <yusf@emqx.io>",
+  "author": "EMQX Team <yusf@emqx.io> and mgsweet",
   "scripts": {
     "version": "yarn run gen:version && git add -A .",
     "serve": "vue-cli-service serve",
@@ -117,5 +117,5 @@
     ]
   },
   "license": "Apache",
-  "repository": "https://github.com/emqx/MQTTX"
+  "repository": "https://github.com/mgsweet/MQTTX"
 }
