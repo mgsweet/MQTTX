@@ -119,7 +119,7 @@ export class initTable1629476510574 implements MigrationInterface {
                 "id" varchar PRIMARY KEY NOT NULL,
                 "payload" varchar NOT NULL,
                 "payloadType" varchar CHECK(
-                    payloadType IN ('Plaintext', 'Base64', 'JSON', 'Hex', 'Zstandard')
+                    payloadType IN ('Plaintext', 'Base64', 'JSON', 'Hex')
                 ) NOT NULL DEFAULT ('JSON'),
                 "createAt" datetime NOT NULL DEFAULT (CURRENT_TIMESTAMP)
             )
