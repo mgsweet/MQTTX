@@ -57,6 +57,9 @@ const convertPayload = async (payload: string, currentType: PayloadType, fromTyp
   if (currentType === 'Hex') {
     _payload = convertHex(_payload, 'encode')
   }
+  if (currentType === 'Zstandard') {
+    _payload = await convertJSON(_payload)
+  }
   return _payload
 }
 
