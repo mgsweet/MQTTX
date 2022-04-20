@@ -1311,6 +1311,10 @@ export default class ConnectionsDetail extends Vue {
       }
       if (receiveType === 'Zstandard') {
         let uncompressed: Buffer = decompressSync({ input: receiveValue })
+        const jsonValue = validFormatJson(uncompressed.toString(), this.$t('connections.receivedMsg'))
+        if (jsonValue) {
+          return jsonValue
+        }
         return uncompressed.toString()
       }
       return receiveValue.toString()
