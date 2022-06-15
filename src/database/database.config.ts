@@ -30,6 +30,7 @@ import { subscriptionIdentifier1639375963172 } from './migration/1639375963172-s
 import { syncOsTheme1639730106721 } from './migration/1639730106721-syncOsTheme'
 import { topicDisabled1640846307653 } from './migration/1640846307653-topicDisabled'
 import { reconnectPeriod1642321826532 } from './migration/1642321826532-reconnectPeriod'
+import { addZstdPayloadType1650384965163 } from './migration/1650384965163-addZstdPayloadType'
 
 const STORE_PATH = getAppDataPath('MQTTX')
 try {
@@ -67,6 +68,7 @@ const ORMConfig = {
     syncOsTheme1639730106721,
     topicDisabled1640846307653,
     reconnectPeriod1642321826532,
+    addZstdPayloadType1650384965163,
   ],
   migrationsTableName: 'temp_migration_table',
   entities: [
